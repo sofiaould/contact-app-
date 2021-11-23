@@ -1,4 +1,5 @@
 import React,{useState,useEffect} from "react";
+import {browserRouter as Router,Switch,Route} from 'react-router-dom';
 import {uuid} from "uuidv4";
 import Header from "./Header";
 import AddContact from "./AddContact";
@@ -9,7 +10,7 @@ const LOCAL_STORAGE_KEY="contacts";
 const [contact,setContacts]= useState([])
 
   const AddContactHandler=(contact)=>{
-    setContacts([...contacts,{ id:uuid(),...contact}])   
+    setContacts([...contacts,{ id:uuid(),...contact }])   
   }
 
   const removeContactHandler =(id)=>{
@@ -30,10 +31,14 @@ const [contact,setContacts]= useState([])
 
   return (
     <div className="ui container">
+      <Router>
       <Header />
-      <AddContact AddContactHandler={AddContactHandler}/>
+      < Router path="/add" component={AddContact}/>
+      < Router path="/home" component={ContactList}/>
+      {/* <AddContact AddContactHandler={AddContactHandler}/> */}
       {/* on lui passe contacts en props - propriete */}
-      <ContactList contacts={contacts} getContactId={removeContactHandler}/>
+      {/* <ContactList contacts={contacts} getContactId={removeContactHandler}/> */}
+      </Router>
     </div>
   );
 }
