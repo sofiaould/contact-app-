@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import {browserRouter as Router,Switch,Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import {uuid} from "uuidv4";
 import Header from "./Header";
 import AddContact from "./AddContact";
@@ -33,8 +33,10 @@ const [contact,setContacts]= useState([])
     <div className="ui container">
       <Router>
       <Header />
+      <Switch> 
+      < Router path="/" exact component={ContactList}/>
       < Router path="/add" component={AddContact}/>
-      < Router path="/home" component={ContactList}/>
+      </Switch>
       {/* <AddContact AddContactHandler={AddContactHandler}/> */}
       {/* on lui passe contacts en props - propriete */}
       {/* <ContactList contacts={contacts} getContactId={removeContactHandler}/> */}
