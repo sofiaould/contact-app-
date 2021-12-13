@@ -34,8 +34,13 @@ const [contact,setContacts]= useState([])
       <Router>
       <Header />
       <Switch> 
-      < Router path="/" exact component={ContactList}/>
-      < Router path="/add" component={AddContact}/>
+      < Router path="/" exact component={()=>(
+        <ContactList contacts={contacts} getContactId={removeContactHandler}/>
+        )}/>
+      < Router path="/add" component={()=>(
+        <AddContact addContactHandler={addContactHandler}/> 
+        )}
+        />
       </Switch>
       {/* <AddContact AddContactHandler={AddContactHandler}/> */}
       {/* on lui passe contacts en props - propriete */}

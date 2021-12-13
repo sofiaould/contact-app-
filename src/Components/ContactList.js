@@ -1,6 +1,7 @@
 /** @format */
 
 import React from "react";
+import { Link } from "react-router-dom";
 import ContactCard from "./ContactCard";
 
 const ContactList = (props) => {
@@ -8,12 +9,12 @@ const ContactList = (props) => {
     props.getContactID(id)
   };
   // render contact list propriété
-  const contact =[{
-    id:"1",
-    name:"john",
-    email:"johndoe@gmail.com"
+  // const contact =[{
+  //   id:"1",
+  //   name:"john",
+  //   email:"johndoe@gmail.com"
   }]
-  const renderContactList = contacts.map((contact) => {
+  const renderContactList = props.contacts.map((contact) => {
     return (
     <ContactCard contact={contact} clickHandler={ deleteContactHandler} key={contact.id}/>
     );
@@ -22,7 +23,9 @@ const ContactList = (props) => {
     <div className="main">
       <h2>
       Contact list
+      <Link to='/add'>
       <button className="ui button blue right"> Add contact</button>
+      </Link>
       </h2>
     <div className="ui celled List">{renderContactList}
    </div>
